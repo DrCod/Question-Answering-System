@@ -1,3 +1,4 @@
 -i https://pypi.org/simpl
 sentence-transformers
 flask
+pandas
