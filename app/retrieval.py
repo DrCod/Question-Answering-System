@@ -53,8 +53,8 @@ def main(args):
 
     qvector = embedder.encode([args.query], normalize_embeddings= (args.normalize_embeddings is not None ))
 
-    es = Elasticsearch('https://localhost:9200', verify_certs=False, ca_certs=False,
-     http_auth=('elastic', 'WvODJyTTXsJRVMtfQZgc'), timeout=30, max_retries=10, retry_on_timeout=True)
+    es = Elasticsearch(args.host, verify_certs=False, ca_certs=False,
+     http_auth=('elastic', args.password), timeout=30, max_retries=10, retry_on_timeout=True)
 
 
     script_query = {
@@ -107,6 +107,8 @@ if __name__ == "__main__":
     parser.add_argument("--n_returns", type=int, default=3)
     parser.add_argument("--normalize_embeddings", action="store_true", default=None)
     parser.add_argument("--output_folder", type=str, default=".\docs")
+    parser.add_argument("--password", type=str, default="pass")
+    parser.add_argument("--host", type=str, default="https://...")
 
     args = parser.parse_args()
     main(args)

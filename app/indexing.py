@@ -57,8 +57,8 @@ def generate_actions(cfg):
 
 def main(args):
 
-    client = Elasticsearch('https://localhost:9200', verify_certs=False, ca_certs=False, 
-    http_auth=('elastic', 'WvODJyTTXsJRVMtfQZgc'), timeout=30, max_retries=10, retry_on_timeout=True)
+    client = Elasticsearch(args.host, verify_certs=False, ca_certs=False, 
+    http_auth=('elastic', args.password), timeout=30, max_retries=10, retry_on_timeout=True)
 
     print("Creating an index...")
     create_index(client)
@@ -77,6 +77,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
     parser.add_argument('--data_dir', type=str, default = '\docs\passage_metadata.csv')
+    parser.add_argument("--host", type=str, default="https://...")
+    parser.add_argument("--password", type=str, default="pass")
     args = parser.parse_args()
 
     main(args)
