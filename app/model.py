@@ -35,7 +35,7 @@ def extract_embeddings_df(cfg, args, model):
 
     df["Passage"] = df.apply(f, axis=1).values
 
-    df['Embedding'] =  df['Passage'].apply(lambda inp : model.encode(inp, normalize_embeddings= (args.normalize_embeddings != None ) ))
+    df['Embedding'] =  df['Passage'].apply(lambda inp : model.encode(inp, normalize_embeddings= (args.normalize_embeddings is not None ) ))
 
     _ = gc.collect()
 
