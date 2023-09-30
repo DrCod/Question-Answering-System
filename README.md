@@ -11,7 +11,7 @@ It is supposed to carry out the following funtionalities:
 
   # Get Started
 
-  The simplest way to set up the application is to 'cd' into working directory and incrementaly execute scripts to generate results for subsequent functionality
+  The simplest way to set up the application is to 'cd' into working directory and incrementaly execute scripts to generate results for executing subsequent functionality including interacting with elasticsearch instance
 
   # Start Parser
   
