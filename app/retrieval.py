@@ -6,6 +6,7 @@ from sentence_transformers import SentenceTransformer
 from elasticsearch.exceptions import ConnectionError, NotFoundError
 import argparse
 
+import gc
 
 class ModelConfig:
 
