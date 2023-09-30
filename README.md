@@ -5,7 +5,7 @@ It is supposed to carry out the following funtionalities:
 
 * Text parsing : Ingest raw and unprocessed text corpus and parse it into structured form
 * Embeddings : Extract input text and query text embeddings
-* Retrieval : Take as input a text query and receive top 3 relevant passages in a given corpus
+* Retrieval : Take as input a text query and receive top 3 relevant passages from a given corpus
 * Indexing : Create document index using [ElasticSearch](https://github.com/elastic/elasticsearch-py)
 * GUI : An interactive user interface to handle querying
 
