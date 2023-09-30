@@ -60,7 +60,7 @@ def main(args):
     script_query = {
 
         "script_score" : {
-            "query" : {"match" : {}},
+            "query" : {"match_all" : {}},
             "script" : {
                 "source": "cosineSimilarity(params.query_vector, 'embeddings') + 1.0",
 
