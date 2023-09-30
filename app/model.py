@@ -4,7 +4,6 @@ from sentence_transformers import SentenceTransformer
 from transformers import AutoConfig, AutoModelForCausalLM, AutoTokenizer
 
 import torch
-from torch.data import Dataset, DataLoader
 import argparse
 import pandas as pd
 import ast
@@ -32,19 +31,12 @@ def extract_embeddings_df(cfg, args, model):
     """
     df = pd.read_csv(args.input_file)
 
-    f = lambda x : ast.literal_eval(x)
+    f = lambda x : ast.literal_eval(x['Passage'])
 
-    inputs = df.apply(f, axis=1).values
+    df["Passage"] = df.apply(f, axis=1).values
 
-    passage_embeddings = model.encode(inputs, normalize_embeddings= (args.normalize_embeddings == None ), show_progress= (args.show_progress == None) )
+    df['Embedding'] =  df['Passage'].apply(lambda inp : model.encode(inp, normalize_embeddings= (args.normalize_embeddings != None ) ))
 
-    print(passage_embeddings.shape)
-    print()
-    print(passage_embeddings)
-
-    df['Embedding'] = passage_embeddings
-
-    del passage_embeddings
     _ = gc.collect()
 
     return df
@@ -70,7 +62,6 @@ if __name__ == '__main__':
     parser.add_argument('--input_file', type=str, default='.\docs\passage_metadata.csv')
     parser.add_argument('--output_folder', type= str, default='.\docs')
     parser.add_argument('--normalize_embeddings', action='store_true', default = None)
-    parser.add_argument('--show_progress', action='store_true', default = None)
 
     args= parser.parse_args()
 
